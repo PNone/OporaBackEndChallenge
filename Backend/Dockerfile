@@ -13,4 +13,4 @@ RUN npm ci
 COPY . .
 
 EXPOSE 8080
-CMD [ "npm", "run", "run" ]
+CMD npm run specialStart

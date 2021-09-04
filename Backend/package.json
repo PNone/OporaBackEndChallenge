@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --experimental-json-modules src/app.js",
-    "run": "webpack serve --entry ./src/app.js --port 8080 --host 0.0.0.0",
+    "specialStart": "webpack serve --entry ./src/app.js --port 8080 --host 0.0.0.0",
     "start": "webpack-dev-server --experimental-json-modules --hot --port 8080 --host 0.0.0.0 --history-api-fallback",
     "startOld": "node src/app.js",
     "build": "webpack -p",
