@@ -1,14 +1,14 @@
-const driversRepo = require('../db/drivers.repository');
+import { getByIdOrName as _getByIdOrName, getByYear as _getByYear } from '../db/drivers.repository.js';
 
 const getByIdOrName = function(req, res){
-    res.send(driversRepo.getByIdOrName(req.params.id));
+    res.send(_getByIdOrName(req.params.id));
 }
 
 const getByYear = function(req, res){
-    res.send(driversRepo.getByYear(req.params.year));
+    res.send(_getByYear(req.params.year));
 }
 
-module.exports = {
+export default {
     getByIdOrName,
     getByYear
 };

@@ -1,6 +1,6 @@
-var express = require('express');
-var router = express.Router();
-const driversController = require('../controllers/drivers.controller');
+import { Router } from 'express';
+var router = Router();
+import driversController from '../controllers/drivers.controller.js';
 
 router.route('/:id')
   .get(driversController.getByIdOrName);
@@ -8,4 +8,4 @@ router.route('/:id')
 router.route('/bySeason/:year')
   .get(driversController.getByYear);
 
-module.exports = router;
+export default router;

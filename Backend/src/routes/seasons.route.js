@@ -1,8 +1,8 @@
-var express = require('express');
-var router = express.Router();
-const seasonsController = require('../controllers/seasons.controller');
+import { Router } from 'express';
+var router = Router();
+import seasonsController from '../controllers/seasons.controller.js';
 
 router.route('/')
   .get(seasonsController.getTopThree);
 
-module.exports = router;
+export default router;

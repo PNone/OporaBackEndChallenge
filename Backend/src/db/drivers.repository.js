@@ -1,43 +1,40 @@
-const { Pool } = require('pg')
-const { driversByIdQuery } = require('../commons/queries');
+import pkg from 'pg';
+const { Pool } = pkg;
+import { driverById, racesByDriverId, driverByName, racesByDriverName, driversByIdQuery } from '../commons/queries.js';
 
-const getByIdOrName = function (idOrName) {
+export const getByIdOrName = function (idOrName) {
     const pool = new Pool();
-    const client = await pool.connect()
-    let result = {driver: null, races: null};
-    try {
-        let driver;
-        let races;
-        if (typeof idOrName == 'string') {
-            driver = await client.query(driverById, [idOrName]);
-            races = await client.query(racesByDriverId, [idOrName]);
+    let result = { driver: null, races: null };
+    pool.connect().then(client => {
+        try {
+            let driver;
+            let races;
+            if (typeof idOrName == 'string') {
+                driver = client.query(driverById, [idOrName]);
+                races = client.query(racesByDriverId, [idOrName]);
+            }
+            else {
+                driver = client.query(driverByName, [idOrName]);
+                races = client.query(racesByDriverName [idOrName]);
+            }
+            result.driver = driver;
+            result.races = races;
         }
-        else {
-            driver = await client.query(driverByName, [idOrName]);
-            races = await client.query(racesByDriverName [idOrName]);
+        finally {
+            client.release();
         }
-        result.driver = driver;
-        result.races = races;
-        return result;
-    }
-    finally {
-        client.release();
-    }
-
+    });
+    return result;
 }
 
-const getByYear = async function (year) {
+export const getByYear = function (year) {
     const pool = new Pool();
-    const client = await pool.connect()
-    try {
-        return await client.query(driversByIdQuery, [year]);
-    }
-    finally {
-        client.release();
-    }
+    pool.connect().then(client => {
+        try {
+            return client.query(driversByIdQuery, [year]);
+        }
+        finally {
+            client.release();
+        }
+    });
 }
-
-module.exports = {
-    getByIdOrName,
-    getByYear
-};

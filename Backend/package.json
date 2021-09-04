@@ -1,9 +1,14 @@
 {
   "name": "opora-practice",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "private": true,
+  "type": "module",
   "scripts": {
-    "start": "node ./bin/www"
+    "dev": "nodemon --experimental-json-modules src/app.js",
+    "start": "webpack-dev-server src/app.js --hot --port 8080 --host 0.0.0.0 --history-api-fallback",
+    "startOld": "node src/app.js",
+    "build": "webpack -p",
+    "clean": "rimraf dist && mkdirp dist"
   },
   "dependencies": {
     "cookie-parser": "~1.4.4",
@@ -12,6 +17,13 @@
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
-    "pg": "^8.7.1"
+    "pg": "^8.7.1",
+    "swagger-ui-express": "^4.1.6"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12",
+    "webpack": "^5.52.0",
+    "webpack-cli": "^4.8.0",
+    "webpack-dev-server": "^4.1.0"
   }
 }

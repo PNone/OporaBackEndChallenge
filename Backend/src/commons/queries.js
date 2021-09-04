@@ -1,4 +1,4 @@
-const driversByIdQuery = `
+export const driversByIdQuery = `
 select drivers.driverid, drivers.forename || ' ' || drivers.surname as driver, sum(driver_standings.wins) as wins
 from drivers
 join driver_standings
@@ -10,17 +10,17 @@ group by drivers.driverid
 order by sum(driver_standings.wins) desc
 `;
 
-const driverById = `
+export const driverById = `
 select * from drivers
 where drivers.driverid = $1
 `;
 
-const driverByName = `
+export const driverByName = `
 select * from drivers
 where drivers.forename || ' ' || drivers.surname = $1
 `;
 
-const racesByDriverId = `
+export const racesByDriverId = `
 select races.raceid, 
 avg(lap_times.milliseconds) as average_lap_time, 
 min(lap_times.milliseconds) as fastest_lap_time,
@@ -49,7 +49,7 @@ group by races.raceid, drivers.driverid
 order by races.date desc
 `;
 
-const racesByDriverName = `
+export const racesByDriverName = `
 select races.raceid, 
 avg(lap_times.milliseconds) as average_lap_time, 
 min(lap_times.milliseconds) as fastest_lap_time,
@@ -78,7 +78,7 @@ group by races.raceid, drivers.driverid
 order by races.date desc
 `;
 
-const getTopThreeOfEachYear = `
+export const getTopThreeOfEachYear = `
 with race_stats as (
     select drivers.driverid, drivers.forename || ' ' || drivers.surname as driver, sum(driver_standings.wins) as total_wins, races.year
     from drivers
@@ -98,12 +98,3 @@ SELECT rank_filter.* FROM (
     FROM race_stats
 ) rank_filter WHERE RANK < 4
 `;
-
-module.export = {
-    driversByIdQuery,
-    driverById,
-    driverByName,
-    racesByDriverId,
-    racesByDriverName,
-    getTopThreeOfEachYear
-};

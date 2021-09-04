@@ -1,9 +1,9 @@
-const seasonsRepo = require('../db/seasons.repository');
+import { getTopThree as getTopThreeForEachYear } from '../db/seasons.repository.js';
 
 const getTopThree = function(req, res){
-    res.send(seasonsRepo.getTopThree());
+    res.send(getTopThreeForEachYear());
 }
 
-module.exports = {
+export default {
     getTopThree
 };

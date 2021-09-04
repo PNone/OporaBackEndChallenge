@@ -1,20 +1,16 @@
-const { Pool } = require('pg')
-const { driversByIdQuery } = require('../commons/queries');
+import pkg from 'pg';
+const { Pool } = pkg;
+import { getTopThreeOfEachYear } from '../commons/queries.js';
 
-const getTopThree = function () {
+export const getTopThree = function () {
     const pool = new Pool();
-    const client = await pool.connect()
-    try {
-        return await client.query(getTopThreeOfEachYear, []);
-    }
-    finally {
-        client.release();
-    }
+    pool.connect().then(client => {
+        try {
+            return client.query(getTopThreeOfEachYear, []);
+        }
+        finally {
+            client.release();
+        }
+    });
 }
-
-
-module.exports = {
-    getTopThree
-};
-
 
