@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "nodemon --experimental-json-modules src/app.js",
-    "start": "webpack-dev-server src/app.js --hot --port 8080 --host 0.0.0.0 --history-api-fallback",
+    "run": "webpack serve --entry ./src/app.js --port 8080 --host 0.0.0.0",
+    "start": "webpack-dev-server --experimental-json-modules --hot --port 8080 --host 0.0.0.0 --history-api-fallback",
     "startOld": "node src/app.js",
     "build": "webpack -p",
     "clean": "rimraf dist && mkdirp dist"
@@ -16,6 +17,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "jade": "~1.11.0",
+    "module": "^1.2.5",
     "morgan": "~1.9.1",
     "pg": "^8.7.1",
     "swagger-ui-express": "^4.1.6"
