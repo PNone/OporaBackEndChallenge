@@ -48,7 +48,7 @@ CREATE TABLE CONSTRUCTOR_RESULTS (
 	constructorResultsId integer PRIMARY KEY,
 	raceId integer not null,
 	constructorId integer not null,
-	points smallint not null,
+	points float not null,
 	status varchar(1),
 	CONSTRAINT fk_race
 		FOREIGN KEY (raceId)
@@ -62,9 +62,9 @@ CREATE TABLE CONSTRUCTOR_STANDINGS (
 	constructorStandingsId integer PRIMARY KEY,
 	raceId integer not null,
 	constructorId integer not null,
-	points smallint not null,
+	points float not null,
 	position smallint not null,
-	positionText varchar(2) not null,
+	positionText varchar(5) not null,
 	wins smallint not null,
 	CONSTRAINT fk_race
 		FOREIGN KEY (raceId)
@@ -78,9 +78,9 @@ CREATE TABLE DRIVER_STANDINGS (
 	driverStandingsId integer PRIMARY KEY,
 	raceId integer not null,
 	driverId integer not null,
-	points smallint not null,
+	points float not null,
 	position smallint not null,
-	positionText varchar(2) not null,
+	positionText varchar(5) not null,
 	wins smallint not null,
 	CONSTRAINT fk_race
 		FOREIGN KEY (raceId)
@@ -97,9 +97,9 @@ CREATE TABLE QUALIFYING (
 	constructorId integer not null,
 	number smallint not null,
 	position smallint not null,
-	q1 time without time zone,
-	q2 time without time zone,
-	q3 time without time zone,
+	q1 varchar(20),
+	q2 varchar(20),
+	q3 varchar(20),
 	CONSTRAINT fk_race
 		FOREIGN KEY (raceId)
 			REFERENCES RACES(raceId),
@@ -117,7 +117,7 @@ CREATE TABLE PIT_STOPS (
 	stop smallint not null,
 	lap smallint not null,
 	time time without time zone not null,
-	duration time without time zone not null,
+	duration varchar(10) not null,
 	milliseconds integer not null,
 	PRIMARY KEY(raceId, driverId, stop),
 	CONSTRAINT fk_race
@@ -162,11 +162,11 @@ CREATE TABLE RESULTS (
 	number smallint,
 	grid smallint not null,
 	position smallint,
-	positionText varchar(1) not null,
+	positionText varchar(5) not null,
 	positionOrder smallint not null,
-	points smallint not null,
+	points float not null,
 	laps smallint not null,
-	time varchar(15) not null,
+	time varchar(15),
 	milliseconds integer,
 	fastestLap smallint,
 	rank smallint,

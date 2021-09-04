@@ -1,1 +1,3 @@
 postgres-data/
+.devcontainer/postgres-data/
+*/node_modules/
