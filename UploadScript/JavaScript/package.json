@@ -1,0 +1,21 @@
+{
+  "name": "upload-csv-to-db",
+  "version": "1.0.0",
+  "description": "Uploads the data from the CSVs in a dir to a postgres DB",
+  "main": "UploadCSVsToDB.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint src/js"
+  },
+  "author": "Uri",
+  "license": "ISC",
+  "dependencies": {
+    "fast-csv": "^4.3.6",
+    "fs": "0.0.1-security",
+    "path": "^0.12.7",
+    "pg": "^8.7.1"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0"
+  }
+}
